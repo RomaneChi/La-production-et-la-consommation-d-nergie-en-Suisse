@@ -65,7 +65,7 @@ D'autre part, nous avons généré un piechart présentant les pourcentages d'ut
 **AUTEURS**
 
 Cecchinelli Bastien & Chilla Romane 
-pour le cours "Visualisation de données" dispensé à l'UNIL par le Professeur I.Pante,
+pour le cours "Visualisation de données" dispensé à l'UNIL par le Professeur I.Pante, dans le cadre du master DCS,
 Année 2024
 
 
