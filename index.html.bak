@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Visualisation de données</title>
+</head>
+<body>    
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script>
+    
+    const div = d3.selectAll("div");
+    
+    </script>
+    <div id="my_dataviz"></div>
+    <script>
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 30, bottom: 30, left: 60},
+    width = 800 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+
+var svg = d3.select("#my_dataviz") 
+    .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+        .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
+
+// Parse the Data
+d3.csv("https://pastebin.com/YNWtJded", function(data) { 
+
+  // List of groups = header of the csv files
+  const keys = data.columns.slice(1)
+
+
+    // X axis: scale and draw:
+    var x = d3.scaleLinear()
+        .domain([0, 100])         // the domain is the range of the data
+        .range([0, width]);       // the range is the range of the graph
+
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+
+    // set the parameters for the histogram
+    var histogram = d3.histogram()
+        .value(function(d) { return d.value; })   // I need to give the vector of value
+        .domain(x.domain())  // then the domain of the graphic
+        .thresholds(x.ticks(70)); // then the numbers of bins
+
+    // And apply this function to data to get the bins
+    var bins = histogram(data);
+
+    // Y axis: scale and draw:
+    var y = d3.scaleLinear()
+        .range([height, 0]);
+    y.domain([0, d3.max(bins, function(d) { return d.length; })]);   // d.length is the number of elements in each bin
+
+    svg.append("g")
+        .call(d3.axisLeft(y));
+
+    // append the bar rectangles to the svg element
+    svg.selectAll("rect")
+        .data(bins)
+        .enter()
+        .append("rect")
+            .attr("x", 1)
+            .attr("transform", function(d) { return "translate(" + x(d.x0) + "," + y(d.length) + ")"; })
+            .attr("width", function(d) { return x(d.x1) - x(d.x0) -1 ; })
+            .attr("height", function(d) { return height - y(d.length); })
+            .style("fill", "#69b3a2")
+
+});
+    </script>
+</body>
+</html>
+

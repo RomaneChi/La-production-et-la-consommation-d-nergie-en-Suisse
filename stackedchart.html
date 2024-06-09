@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stacked Bar Chart avec D3.js</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        .bar {
+            stroke: #000;
+            stroke-width: 1px;
+        }
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+        .legend {
+            font-size: 12px;
+        }
+
+        #stackedchart {
+        width: 100%;
+        height: auto;
+    }
+
+    </style>
+</head>
+<body>
+    <div id="stackedchart"></div>
+    <script src="stackedchart.js"></script>
+    <p>Enfin, à l'aide du graphique en barres empilées représentant les mêmes métriques, il est possible d'obtenir davantage d'informations sur les dynamiques de production. 
+        En effet, en passant la souris sur les barres, le mois ainsi que l'année apparaissent. En cliquant sur une proportion, celle-ci se démarque et s'affichent la date et la valeur exacte. 
+        Dès lors on remarque que l'hydraulique est une technique qui n'est pas aussi efficace en saison hivernale qu'en saison estivale. 
+        En outre, ce graphique permet de voir que la production thermique a doublé voire triplé en termes de proportion du total sur la période. </p>
+
+
+</body>
+</html>
+
